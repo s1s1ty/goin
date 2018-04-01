@@ -19,15 +19,15 @@ import "gopkg.in/s1s1ty/goin"
 ```go
 func main() {
 	ar := []int{1, 2, 4, 7, 8, 3}
-	re := goin.IntIn(ar, 7)
+	re := goin.InInt(ar, 7)
 	fmt.Println(re)
 }
 ```
 ## Available Methods
 
-- `Float64In(ar []float64, value float64)`
-- `StringIn(ar []string, value string)`
-- `IntIn(ar []int, value int)`
+- `InFloat64(ar []float64, value float64)`
+- `InString(ar []string, value string)`
+- `InInt(ar []int, value int)`
 
 
 #### License
