@@ -28,6 +28,7 @@ func main() {
 - `InFloat64(ar []float64, value float64)`
 - `InString(ar []string, value string)`
 - `InInt(ar []int, value int)`
+- `In(ar []interface{}, value interface{}, typ string)`
 
 
 #### License
