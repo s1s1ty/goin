@@ -11,7 +11,7 @@ go get github.com/s1s1ty/goin
 ```
 Import it with:
 ```go
-import "gopkg.in/s1s1ty/goin"
+import "github.com/s1s1ty/goin"
 ```
 
 ## Quick Start
