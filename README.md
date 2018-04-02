@@ -20,15 +20,20 @@ import "github.com/s1s1ty/goin"
 func main() {
 	ar := []int{1, 2, 4, 7, 8, 3}
 	re := goin.InInt(ar, 7)
-	fmt.Println(re)
+	fmt.Println(re) // true
+
+	seq := []float64{1.11, 3.20, 5.89, 2.90}
+	re := goin.In(seq, 2.9, "float64")
+	fmt.Println(re) // true
 }
 ```
 ## Available Methods
 
-- `InFloat64(ar []float64, value float64)`
-- `InString(ar []string, value string)`
-- `InInt(ar []int, value int)`
-- `In(ar []interface{}, value interface{}, typ string)`
+- `InFloat64(sequence []float64, value float64)`
+- `InString(sequence []string, value string)`
+- `InInt(sequence []int, value int)`
+- `In(sequence []interface{}, value interface{}, typ string)`
+	* all `sequence` elements type and `value` type must be as same as `typ` type
 
 
 #### License
