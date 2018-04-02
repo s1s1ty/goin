@@ -32,8 +32,8 @@ func main() {
 - `InFloat64(sequence []float64, value float64)`
 - `InString(sequence []string, value string)`
 - `InInt(sequence []int, value int)`
-- `In(sequence []interface{}, value interface{}, typ string)`
-	* all `sequence` elements type and `value` type must be as same as `typ` type
+- `In(sequence type, value type, typ type)`
+	* `type` will be `string` or `int` or `float64`
 
 
 #### License

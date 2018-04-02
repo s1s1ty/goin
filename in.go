@@ -1,6 +1,7 @@
 package goin
 
 import (
+	"fmt"
 	"log"
 	"sort"
 )
@@ -72,6 +73,14 @@ func In(ar interface{}, value interface{}, typ string) bool {
 			log.Fatal("Convert typ is `int` but value type is not `int`")
 		}
 		return InInt(seq, val)
+	case "int32":
+		fmt.Println("Not Implemented yet")
+	case "int64":
+		fmt.Println("Not Implemented yet")
+	case "float":
+		fmt.Println("Not Implemented yet")
+	case "float32":
+		fmt.Println("Not Implemented yet")
 	case "float64":
 		seq, ok := ar.([]float64)
 		if ok != true {
