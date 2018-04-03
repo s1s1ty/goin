@@ -172,4 +172,34 @@ func Test_In(t *testing.T) {
 	if test6 != false {
 		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, recieved: %v", ar5, 50, false, test6)
 	}
+
+	mp1 := map[string]int{"junior": 1, "mid": 2, "senior": 3}
+	test7 := In(mp1, "junior", "[string]int")
+	if test7 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, recieved: %v", mp1, "junior", true, test7)
+	}
+
+	mp2 := map[int]string{110: "shaon", 202: "munni", 390: "duli"}
+	test8 := In(mp2, 10, "[int]string")
+	if test8 != false {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, recieved: %v", mp2, 10, false, test8)
+	}
+
+	mp3 := map[string]string{"name": "shaon", "id": "102", "dept": "cse"}
+	test9 := In(mp3, "fullname", "[string]string")
+	if test8 != false {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, recieved: %v", mp3, "fullname", false, test9)
+	}
+
+	mp4 := map[int]float64{1: 222.90, 2: 345.87, 3: 500.78}
+	test10 := In(mp4, 2, "[int]float64")
+	if test10 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, recieved: %v", mp4, 2, true, test10)
+	}
+
+	mp5 := map[int]float32{1: 222.90, 2: 345.87, 3: 500.78}
+	test11 := In(mp5, 2, "[int]float32")
+	if test11 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, recieved: %v", mp5, 2, true, test11)
+	}
 }
