@@ -1,4 +1,6 @@
 # goin
+[![Go Report Card](https://goreportcard.com/badge/github.com/s1s1ty/goin)](https://goreportcard.com/report/github.com/s1s1ty/goin)
+
 **goin** Evaluates to true if it finds a variable in the specified sequence and false otherwise.
 
 * **goin** package is built inspired by **python** **in** operator
