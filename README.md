@@ -30,10 +30,13 @@ func main() {
 ## Available Methods
 
 - `InFloat64(sequence []float64, value float64)`
+- `InFloat32(sequence []float32, value float32)`
 - `InString(sequence []string, value string)`
 - `InInt(sequence []int, value int)`
+- `InInt32(sequence []int32, value int32)`
+- `InInt64(sequence []int64, value int64)`
 - `In(sequence type, value type, typ type)`
-	* `type` will be `string` or `int` or `float64`
+	* `type` will be `string`/`float64`/`float32`/`int`/`int32`/`int64`
 
 
 #### License
