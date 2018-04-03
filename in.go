@@ -1,14 +1,67 @@
 package goin
 
 import (
-	"fmt"
 	"log"
 	"sort"
 )
 
-// InInt returns boolean value based on int sequence contains value variable or not
+// InInt returns boolean value based on Int sequence contains value variable or not
 func InInt(ar []int, value int) bool {
 	sort.Ints(ar)
+	start := 0
+	end := len(ar) - 1
+	for start <= end {
+		mid := (start + end) / 2
+		if ar[mid] == value {
+			return true
+		} else if ar[mid] < value {
+			start = mid + 1
+		} else if ar[mid] > value {
+			end = mid - 1
+		}
+	}
+	return false
+}
+
+// InInt32 returns boolean value based on Int32 sequence contains value variable or not
+func InInt32(ar []int32, value int32) bool {
+	sort.Slice(ar, func(i, j int) bool { return ar[i] < ar[j] })
+	start := 0
+	end := len(ar) - 1
+	for start <= end {
+		mid := (start + end) / 2
+		if ar[mid] == value {
+			return true
+		} else if ar[mid] < value {
+			start = mid + 1
+		} else if ar[mid] > value {
+			end = mid - 1
+		}
+	}
+	return false
+}
+
+// InInt64 returns boolean value based on Int64 sequence contains value variable or not
+func InInt64(ar []int64, value int64) bool {
+	sort.Slice(ar, func(i, j int) bool { return ar[i] < ar[j] })
+	start := 0
+	end := len(ar) - 1
+	for start <= end {
+		mid := (start + end) / 2
+		if ar[mid] == value {
+			return true
+		} else if ar[mid] < value {
+			start = mid + 1
+		} else if ar[mid] > value {
+			end = mid - 1
+		}
+	}
+	return false
+}
+
+// InFloat32 returns boolean value based on Float32 sequence contains value variable or not
+func InFloat32(ar []float32, value float32) bool {
+	sort.Slice(ar, func(i, j int) bool { return ar[i] < ar[j] })
 	start := 0
 	end := len(ar) - 1
 	for start <= end {
@@ -74,13 +127,35 @@ func In(ar interface{}, value interface{}, typ string) bool {
 		}
 		return InInt(seq, val)
 	case "int32":
-		fmt.Println("Not Implemented yet")
+		seq, ok := ar.([]int32)
+		if ok != true {
+			log.Fatal("Convert typ is `int` but sequence type is not `int`")
+		}
+		val, ok := value.(int32)
+		if ok != true {
+			log.Fatal("Convert typ is `int` but value type is not `int`")
+		}
+		return InInt32(seq, val)
 	case "int64":
-		fmt.Println("Not Implemented yet")
-	case "float":
-		fmt.Println("Not Implemented yet")
+		seq, ok := ar.([]int64)
+		if ok != true {
+			log.Fatal("Convert typ is `int` but sequence type is not `int`")
+		}
+		val, ok := value.(int64)
+		if ok != true {
+			log.Fatal("Convert typ is `int` but value type is not `int`")
+		}
+		return InInt64(seq, val)
 	case "float32":
-		fmt.Println("Not Implemented yet")
+		seq, ok := ar.([]float32)
+		if ok != true {
+			log.Fatal("Convert typ is `int` but sequence type is not `int`")
+		}
+		val, ok := value.(float32)
+		if ok != true {
+			log.Fatal("Convert typ is `int` but value type is not `int`")
+		}
+		return InFloat32(seq, val)
 	case "float64":
 		seq, ok := ar.([]float64)
 		if ok != true {
