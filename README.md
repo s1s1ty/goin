@@ -25,6 +25,10 @@ func main() {
 	seq := []float64{1.11, 3.20, 5.89, 2.90}
 	re := goin.In(seq, 2.9, "float64")
 	fmt.Println(re) // true
+
+	dict := map[string]string{"name": "shaon", "id": 110}
+	re := goin.In(dict, "fullname", "[string]string")
+	fmt.Println(re) // false
 }
 ```
 ## Available Methods
@@ -36,7 +40,7 @@ func main() {
 - `InInt32(sequence []int32, value int32)`
 - `InInt64(sequence []int64, value int64)`
 - `In(sequence type, value type, typ type)`
-	* `type` will be `string`/`float64`/`float32`/`int`/`int32`/`int64`
+	* `type` will be `string`/`float64`/`float32`/`int`/`int32`/`int64`/`map`
 
 
 #### License
