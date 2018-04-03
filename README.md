@@ -30,7 +30,7 @@ func main() {
 	re := goin.In(seq, 2.9, "float64")
 	fmt.Println(re) // true
 
-	dict := map[string]string{"name": "shaon", "id": 110}
+	dict := map[string]string{"name": "shaon", "id": "110"}
 	re := goin.In(dict, "fullname", "[string]string")
 	fmt.Println(re) // false
 }
