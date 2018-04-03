@@ -2,6 +2,7 @@ package goin
 
 import (
 	"log"
+	"reflect"
 	"sort"
 )
 
@@ -119,61 +120,61 @@ func In(ar interface{}, value interface{}, typ string) bool {
 	case "int":
 		seq, ok := ar.([]int)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but sequence type is not `int`")
+			log.Fatal("Convert type is int but sequence type is ", reflect.TypeOf(seq))
 		}
 		val, ok := value.(int)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but value type is not `int`")
+			log.Fatal("Convert type is int but value type is ", reflect.TypeOf(val))
 		}
 		return InInt(seq, val)
 	case "int32":
 		seq, ok := ar.([]int32)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but sequence type is not `int`")
+			log.Fatal("Convert type is int32 but sequence type is ", reflect.TypeOf(seq))
 		}
 		val, ok := value.(int32)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but value type is not `int`")
+			log.Fatal("Convert type is int32 but value type is ", reflect.TypeOf(val))
 		}
 		return InInt32(seq, val)
 	case "int64":
 		seq, ok := ar.([]int64)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but sequence type is not `int`")
+			log.Fatal("Convert type is int64 but sequence type is ", reflect.TypeOf(seq))
 		}
 		val, ok := value.(int64)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but value type is not `int`")
+			log.Fatal("Convert type is int64 but value type is ", reflect.TypeOf(val))
 		}
 		return InInt64(seq, val)
 	case "float32":
 		seq, ok := ar.([]float32)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but sequence type is not `int`")
+			log.Fatal("Convert type is float32 but sequence type is ", reflect.TypeOf(seq))
 		}
 		val, ok := value.(float32)
 		if ok != true {
-			log.Fatal("Convert typ is `int` but value type is not `int`")
+			log.Fatal("Convert type is float32 but value type is ", reflect.TypeOf(val))
 		}
 		return InFloat32(seq, val)
 	case "float64":
 		seq, ok := ar.([]float64)
 		if ok != true {
-			log.Fatal("Convert typ is `float64` but sequence type is not `float64`")
+			log.Fatal("Convert type is float64 but sequence type is ", reflect.TypeOf(seq))
 		}
 		val, ok := value.(float64)
 		if ok != true {
-			log.Fatal("Convert typ is `float64` but value type is not `float64`")
+			log.Fatal("Convert type is float64 but value type is ", reflect.TypeOf(val))
 		}
 		return InFloat64(seq, val)
 	case "string":
 		seq, ok := ar.([]string)
 		if ok != true {
-			log.Fatal("Convert typ is `string` but sequence type is not `string`")
+			log.Fatal("Convert type is string but sequence type is ", reflect.TypeOf(seq))
 		}
 		val, ok := value.(string)
 		if ok != true {
-			log.Fatal("Convert typ is `string` but value type is not `string`")
+			log.Fatal("Convert type is string but value type is ", reflect.TypeOf(seq))
 		}
 		return InString(seq, val)
 	default:
