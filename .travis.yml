@@ -9,7 +9,7 @@ matrix:
     - go: 1.9
     - go: tip
   allow_failures:
-    - go: tip
+    - go: 1.7
 
 
 script:
