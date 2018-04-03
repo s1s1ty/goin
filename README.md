@@ -1,7 +1,8 @@
 # goin
 [![Go Report Card](https://goreportcard.com/badge/github.com/s1s1ty/goin)](https://goreportcard.com/report/github.com/s1s1ty/goin)
 [![Build Status](https://travis-ci.org/s1s1ty/goin.svg?branch=master)](https://travis-ci.org/s1s1ty/goin)
-[![Coverage Status](https://coveralls.io/repos/github/s1s1ty/goin/badge.svg?branch=master)](https://coveralls.io/github/s1s1ty/goin?branch=master)
+![license](https://img.shields.io/github/license/s1s1ty/goin.svg)
+
 
 **goin** Evaluates to true if it finds a variable in the specified sequence and false otherwise.
 
