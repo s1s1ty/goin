@@ -74,17 +74,23 @@ func Test_InInt64(t *testing.T) {
 	}
 }
 func Test_InFloat64(t *testing.T) {
-	seq := []float64{1.2, 4.110, 5.98, 2.78, 9.0}
+
+	seq := []float64{4.110, 5.98, 0.00000000000000001, 1.9999999999999996, 5.33333333333}
+	seq = append(seq, 0.2*6)
 	testCases := []struct {
 		key      float64
 		expected bool
 	}{
 		{
-			key:      5.9,
+			key:      1.2,
+			expected: true,
+		},
+		{
+			key:      0.00000000000000000,
 			expected: false,
 		},
 		{
-			key:      4.11,
+			key:      5.33333333333,
 			expected: true,
 		},
 	}
@@ -95,7 +101,7 @@ func Test_InFloat64(t *testing.T) {
 	}
 }
 func Test_InFloat32(t *testing.T) {
-	seq := []float32{1.2, 4.110, 5.98, 2.78, 9.0}
+	seq := []float32{1.2, 4.110, 5.98, 2.78, 1.9999999996999996, 0.00000000010000001}
 	testCases := []struct {
 		key      float32
 		expected bool
@@ -105,7 +111,11 @@ func Test_InFloat32(t *testing.T) {
 			expected: false,
 		},
 		{
-			key:      4.11,
+			key:      1.9999999999,
+			expected: true,
+		},
+		{
+			key:      0.00000000010000001, // support 10^9
 			expected: true,
 		},
 	}
