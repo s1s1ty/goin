@@ -22,11 +22,16 @@ func Test_InInt(t *testing.T) {
 		},
 	}
 	for _, test := range testCases {
-		if output := InInt(test.seq, test.key); output != test.expected {
-			t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", test.seq, test.key, test.expected, output)
+		if output, err := NewValue(test.key).In(test.seq); output != test.expected {
+			if err != nil {
+				t.Error(err)
+			} else {
+				t.Errorf("Test Failed: %v sequence and %v key inputed, %v expected, received: %v", test.seq, test.key, test.expected, output)
+			}
 		}
 	}
 }
+
 func Test_InInt32(t *testing.T) {
 	testCases := []struct {
 		seq      []int32
@@ -45,11 +50,17 @@ func Test_InInt32(t *testing.T) {
 		},
 	}
 	for _, test := range testCases {
-		if output := InInt32(test.seq, test.key); output != test.expected {
-			t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", test.seq, test.key, test.expected, output)
+		if output, err := NewValue(test.key).In(test.seq); output != test.expected {
+			if err != nil {
+				t.Error(err)
+			} else {
+				t.Errorf("Test Failed: %v sequence and %v key inputed, %v expected, received: %v", test.seq, test.key, test.expected, output)
+			}
 		}
+
 	}
 }
+
 func Test_InInt64(t *testing.T) {
 	testCases := []struct {
 		seq      []int64
@@ -68,11 +79,17 @@ func Test_InInt64(t *testing.T) {
 		},
 	}
 	for _, test := range testCases {
-		if output := InInt64(test.seq, test.key); output != test.expected {
-			t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", test.seq, test.key, test.expected, output)
+		if output, err := NewValue(test.key).In(test.seq); output != test.expected {
+			if err != nil {
+				t.Error(err)
+			} else {
+				t.Errorf("Test Failed: %v sequence and %v key inputed, %v expected, received: %v", test.seq, test.key, test.expected, output)
+			}
 		}
+
 	}
 }
+
 func Test_InFloat64(t *testing.T) {
 
 	seq := []float64{4.110, 5.98, 0.00000000000000001, 1.9999999999999996, 5.33333333333}
@@ -95,11 +112,17 @@ func Test_InFloat64(t *testing.T) {
 		},
 	}
 	for _, test := range testCases {
-		if output := InFloat64(seq, test.key); output != test.expected {
-			t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", seq, test.key, test.expected, output)
+		if output, err := NewValue(test.key).In(seq); output != test.expected {
+			if err != nil {
+				t.Error(err)
+			} else {
+				t.Errorf("Test Failed: %v sequence and %v key inputed, %v expected, received: %v", seq, test.key, test.expected, output)
+			}
 		}
+
 	}
 }
+
 func Test_InFloat32(t *testing.T) {
 	seq := []float32{1.2, 4.110, 5.98, 2.78, 1.9999999996999996, 0.00000000010000001}
 	testCases := []struct {
@@ -120,11 +143,17 @@ func Test_InFloat32(t *testing.T) {
 		},
 	}
 	for _, test := range testCases {
-		if output := InFloat32(seq, test.key); output != test.expected {
-			t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", seq, test.key, test.expected, output)
+		if output, err := NewValue(test.key).In(seq); output != test.expected {
+			if err != nil {
+				t.Error(err)
+			} else {
+				t.Errorf("Test Failed: %v sequence and %v key inputed, %v expected, received: %v", seq, test.key, test.expected, output)
+			}
 		}
+
 	}
 }
+
 func Test_InString(t *testing.T) {
 	seq := []string{"apple", "orange", "pine", "lemon"}
 	testCases := []struct {
@@ -141,75 +170,112 @@ func Test_InString(t *testing.T) {
 		},
 	}
 	for _, test := range testCases {
-		if output := InString(seq, test.key); output != test.expected {
-			t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", seq, test.key, test.expected, output)
+		if output, err := NewValue(test.key).In(seq); output != test.expected {
+			if err != nil {
+				t.Error(err)
+			} else {
+				t.Errorf("Test Failed: %v sequence and %v key inputed, %v expected, received: %v", seq, test.key, test.expected, output)
+			}
 		}
+
 	}
 }
+
 func Test_In(t *testing.T) {
 	ar1 := []string{"apple", "orange", "pine", "lemon"}
-	test1 := In(ar1, "apple", "string")
+	test1, _ := NewValue("apple").In(ar1)
 	if test1 != true {
 		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar1, "apple", true, test1)
 	}
 
 	ar2 := []int{500, 100, 10, 20, 80}
-	test2 := In(ar2, 800, "int")
+	test2, _ := NewValue(int(800)).In(ar2)
 	if test2 != false {
 		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar2, 800, false, test2)
 	}
 
 	ar3 := []int32{500, 100, 10, 20, 80}
-	test3 := In(ar3, int32(100), "int32")
+	test3, _ := NewValue(int32(100)).In(ar3)
 	if test3 != true {
 		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar3, 100, true, test3)
 	}
 
 	ar4 := []int64{500, 100, 10, 20, 80}
-	test4 := In(ar4, int64(20), "int64")
+	test4, _ := NewValue(int64(20)).In(ar4)
 	if test4 != true {
 		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar4, 20, true, test4)
 	}
 
 	ar5 := []float64{50.10, 2.100, 1.570, 23.20, 80.0}
-	test5 := In(ar5, 1.5, "float64")
+	test5, _ := NewValue(float64(1.5)).In(ar5)
 	if test5 != false {
 		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar5, 1.5, false, test5)
 	}
 
 	ar6 := []float32{50.10, 2.100, 1.570, 23.20, 80.0}
-	test6 := In(ar6, float32(50), "float32")
+	test6, _ := NewValue(float32(50)).In(ar6)
 	if test6 != false {
-		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar5, 50, false, test6)
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar6, 50, false, test6)
 	}
 
+	ar7 := [5]int{500, 100, 10, 20, 80}
+	test7, _ := NewValue(int(800)).In(ar7)
+	if test7 != false {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar7, 800, false, test7)
+	}
+
+	ar8 := []interface{}{500, "100", 10, 20.1, 80}
+	test8, _ := NewValue("100").In(ar8)
+	if test8 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", ar8, "100", false, test8)
+	}
+}
+
+func Test_InKey(t *testing.T) {
+
 	mp1 := map[string]int{"junior": 1, "mid": 2, "senior": 3}
-	test7 := In(mp1, "junior", "[string]int")
-	if test7 != true {
-		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp1, "junior", true, test7)
+	test1, _ := NewValue("junior").InKey(mp1)
+	if test1 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp1, "junior", true, test1)
 	}
 
 	mp2 := map[int]string{110: "shaon", 202: "munni", 390: "duli"}
-	test8 := In(mp2, 10, "[int]string")
-	if test8 != false {
-		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp2, 10, false, test8)
+	test2, _ := NewValue(10).InKey(mp2)
+	if test2 != false {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp2, 10, false, test2)
 	}
 
 	mp3 := map[string]string{"name": "shaon", "id": "102", "dept": "cse"}
-	test9 := In(mp3, "fullname", "[string]string")
-	if test8 != false {
-		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp3, "fullname", false, test9)
+	test3, _ := NewValue("fullname").InKey(mp3)
+	if test3 != false {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp3, "fullname", false, test3)
 	}
 
 	mp4 := map[int]float64{1: 222.90, 2: 345.87, 3: 500.78}
-	test10 := In(mp4, 2, "[int]float64")
-	if test10 != true {
-		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp4, 2, true, test10)
+	test4, _ := NewValue(2).InKey(mp4)
+	if test4 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp4, 2, true, test4)
 	}
 
 	mp5 := map[int]float32{1: 222.90, 2: 345.87, 3: 500.78}
-	test11 := In(mp5, 2, "[int]float32")
-	if test11 != true {
-		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp5, 2, true, test11)
+	test5, _ := NewValue(2).InKey(mp5)
+	if test5 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp5, 2, true, test5)
+	}
+
+	mp6 := map[int]float32{1: 222.90, 2: 345.87, 3: 500.78}
+	test6, _ := NewValue(4).InKey(mp6)
+	if test6 != false {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp6, 4, false, test6)
+	}
+
+	mp7 := map[interface{}]interface{}{1: 222.90, "2": 345.87, 3.1: 500.78}
+	test7, _ := NewValue("2").InKey(mp7)
+	if test7 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp7, "2", false, test7)
+	}
+	test7_1, _ := NewValue(3.1).InKey(mp7)
+	if test7_1 != true {
+		t.Errorf("Test Failed: %v sequence and %v key inputted, %v expected, received: %v", mp7, 3.1, false, test7_1)
 	}
 }
