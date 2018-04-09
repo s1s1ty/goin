@@ -24,15 +24,15 @@ import "github.com/s1s1ty/goin"
 ```go
 func main() {
 	ar := []int{1, 2, 4, 7, 8, 3}
-	found, _ := goin.NewValue(7).In(ar)
+	found, _ := goin.Value(7).In(ar)
 	fmt.Println(found) // true
 
 	seq := []float64{1.11, 3.20, 5.89, 2.90}
-	found, _ = goin.NewValue(2.9).In(seq)
+	found, _ = goin.Value(2.9).In(seq)
 	fmt.Println(found) // true
 
 	dict := map[string]string{"name": "shaon", "id": "110"}
-	found, _ = goin.NewValue("fullname").InKey(dict)
+	found, _ = goin.Value("fullname").InKey(dict)
 	fmt.Println(found) // false
 }
 ```

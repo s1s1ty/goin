@@ -5,33 +5,42 @@ import (
 	"reflect"
 )
 
-// NewValue returns a new Value set data to x.
-func NewValue(x interface{}) *Value {
-	return &Value{
+// Value returns a new Value set data to x.
+func Value(x interface{}) *Item {
+	return &Item{
 		data: x,
 	}
 }
 
-// A Value holds a data to be checked in array, slice or map.
-type Value struct {
+// A Item holds a data to be checked in array, slice or map.
+type Item struct {
 	data interface{}
 }
 
 // In reports whether Value can be found in array/slice arr.
-func (i *Value) In(arr interface{}) (bool, error) {
-	s := reflect.ValueOf(arr)
-	kind := s.Kind()
-	len := s.Len()
+func (i *Item) In(arr interface{}) (bool, error) {
+	datas := reflect.ValueOf(arr)
+	kind := datas.Kind()
+	len := datas.Len()
 
 	if kind != reflect.Slice && kind != reflect.Array {
-		return false, fmt.Errorf(`invalid kind "%s". support only "slice" and "array"`, s.Kind())
+		return false, fmt.Errorf(`invalid kind "%s". support only "slice" and "array"`, kind)
 	}
 
 	switch reflect.TypeOf(i.data).Kind() {
 	case reflect.Int:
 		data := i.data.(int)
 		for index := 0; index < len; index++ {
-			if d, ok := s.Index(index).Interface().(int); ok {
+			if d, ok := datas.Index(index).Interface().(int); ok {
+				if data == d {
+					return true, nil
+				}
+			}
+		}
+	case reflect.Int16:
+		data := i.data.(int16)
+		for index := 0; index < len; index++ {
+			if d, ok := datas.Index(index).Interface().(int16); ok {
 				if data == d {
 					return true, nil
 				}
@@ -40,7 +49,7 @@ func (i *Value) In(arr interface{}) (bool, error) {
 	case reflect.Int32:
 		data := i.data.(int32)
 		for index := 0; index < len; index++ {
-			if d, ok := s.Index(index).Interface().(int32); ok {
+			if d, ok := datas.Index(index).Interface().(int32); ok {
 				if data == d {
 					return true, nil
 				}
@@ -49,9 +58,9 @@ func (i *Value) In(arr interface{}) (bool, error) {
 	case reflect.Int64:
 		data := i.data.(int64)
 		for index := 0; index < len; index++ {
-			v := s.Index(index)
+			v := datas.Index(index)
 			if v.Kind() == reflect.Int64 {
-				if s.Index(index).Int() == data {
+				if datas.Index(index).Int() == data {
 					return true, nil
 				}
 			}
@@ -59,7 +68,7 @@ func (i *Value) In(arr interface{}) (bool, error) {
 	case reflect.Float32:
 		data := i.data.(float32)
 		for index := 0; index < len; index++ {
-			if d, ok := s.Index(index).Interface().(float32); ok {
+			if d, ok := datas.Index(index).Interface().(float32); ok {
 				if data == d {
 					return true, nil
 				}
@@ -68,7 +77,7 @@ func (i *Value) In(arr interface{}) (bool, error) {
 	case reflect.Float64:
 		data := i.data.(float64)
 		for index := 0; index < len; index++ {
-			if d, ok := s.Index(index).Interface().(float64); ok {
+			if d, ok := datas.Index(index).Interface().(float64); ok {
 				if data == d {
 					return true, nil
 				}
@@ -77,7 +86,7 @@ func (i *Value) In(arr interface{}) (bool, error) {
 	case reflect.String:
 		data := i.data.(string)
 		for index := 0; index < len; index++ {
-			if d, ok := s.Index(index).Interface().(string); ok {
+			if d, ok := datas.Index(index).Interface().(string); ok {
 				if data == d {
 					return true, nil
 				}
@@ -89,7 +98,7 @@ func (i *Value) In(arr interface{}) (bool, error) {
 }
 
 // InKey reports whether Value can be found as key of map arr.
-func (i *Value) InKey(arr interface{}) (bool, error) {
+func (i *Item) InKey(arr interface{}) (bool, error) {
 	s := reflect.ValueOf(arr)
 
 	if s.Kind() != reflect.Map {
